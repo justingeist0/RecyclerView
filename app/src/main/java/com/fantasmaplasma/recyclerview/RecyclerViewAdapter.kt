@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerViewAdapter(private val mContext: Context): RecyclerView.Adapter<RecyclerViewAdapter.Holder>() {
+class RecyclerViewAdapter(private val mContext: Context): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     private var data: List<ItemPrice>? = null
 
@@ -16,13 +16,13 @@ class RecyclerViewAdapter(private val mContext: Context): RecyclerView.Adapter<R
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder =
-        Holder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(
             LayoutInflater.from(mContext)
                 .inflate(R.layout.list_item, parent, false)
         )
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(position)
     }
 
@@ -30,7 +30,7 @@ class RecyclerViewAdapter(private val mContext: Context): RecyclerView.Adapter<R
         return data?.size ?: 0
     }
 
-    inner class Holder(view: View): RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val mProductTV = view.findViewById<TextView>(R.id.tv_item)
         private val mPriceTV = view.findViewById<TextView>(R.id.tv_price)
 
